@@ -2,7 +2,6 @@ const CACHE_NAME = 'aandsv1';
 const BASE_PATH = '/aandsv1'; // GitHub repo name
 
 const ASSETS_TO_CACHE = [
-  ${BASE_PATH}/,
   ${BASE_PATH}/index.html,
   ${BASE_PATH}/styles.css,
   ${BASE_PATH}/app.js,
