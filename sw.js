@@ -1,11 +1,13 @@
 const CACHE_NAME = 'aandsv1';
+
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
   '/styles.css',
   '/app.js',
   '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/icons/icon-512x512.png',
+  '/offline.html' // fallback page (make sure this exists)
 ];
 
 self.addEventListener('install', event => {
@@ -32,7 +34,6 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Skip caching for API requests or non-GET requests
   if (event.request.method !== 'GET') {
     return;
   }
@@ -40,33 +41,28 @@ self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
       .then(response => {
-        // Cache hit - return response
         if (response) {
           return response;
         }
 
-        // Clone the request
         const fetchRequest = event.request.clone();
 
-        return fetch(fetchRequest).then(
-          response => {
-            // Check if we received a valid response
-            if(!response || response.status !== 200||  response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-
+        return fetch(fetchRequest).then(response => {
+          // Check for a valid response
+          if (!response ||  response.status !== 200 || response.type !== 'basic') {
             return response;
           }
-        ).catch(() => {
-          // If fetch fails, return offline page or fallback
+
+          const responseToCache = response.clone();
+
+          caches.open(CACHE_NAME)
+            .then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+
+          return response;
+        }).catch(() => {
+          // Return fallback page if available
           return caches.match('/offline.html');
         });
       })
