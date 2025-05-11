@@ -1,367 +1,383 @@
 <!doctype html>
-<html lang="en"> 
- <head> 
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"> 
-  <meta name="theme-color" content="rgb(74, 71, 228)"> 
-  <meta name="mobile-web-app-capable" content="yes">
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="rgb(74, 71, 228)">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">  
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="BudgetPOS">
+  <link rel="manifest" href="/aandsv1/manifest.json">
   <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
-  <title data-translate-key="pos_system_title">Budget POS System</title> 
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css"> 
- </head> 
- <body> 
-  <nav id="side-menu"> 
+  <link rel="stylesheet" href="style.css">
+  
+  <title data-translate-key="pos_system_title">Budget POS System</title>
+  
+ </head>
+ <body>
+  <nav id="side-menu">
    <div class="menu-header"> <a style="color: white;font-family: Georgia, 'Times New Roman', Times, serif;font-size: 30px;
-    ">A&amp;S</a> 
-   </div> 
-   <ul> 
-    <li><a href="#dashboard" class="nav-link active" data-section="dashboard-section" data-translate-key="menu_dashboard">Dashboard</a></li> 
-    <li><a href="#pos" class="nav-link" data-section="pos-section" data-translate-key="menu_pos">Point of Sale</a></li> 
-    <li><a href="#items" class="nav-link" data-section="items-section" data-translate-key="menu_items">Items</a></li> 
-    <li><a href="#categories" class="nav-link" data-section="categories-section" data-translate-key="menu_categories">Categories</a></li> 
-    <li><a href="#stock" class="nav-link needs-password" data-section="stock-section" data-translate-key="menu_stock">Stock</a></li> 
-    <li><a href="#purchases" class="nav-link" data-section="purchases-section" data-translate-key="menu_purchases">Purchases</a></li> 
-    <li><a href="#daily_report" class="nav-link needs-password" data-section="daily-report-section" data-translate-key="menu_daily_report">Daily Report</a></li> 
-    <li><a href="#monthly_report" class="nav-link needs-password" data-section="monthly-report-section" data-translate-key="menu_monthly_report">Monthly Report</a></li> 
-    <li><a href="#settings" class="nav-link" data-section="settings-section" data-translate-key="menu_settings">Settings</a></li> 
-    <li><a href="#about" class="nav-link" data-section="about-section" data-translate-key="menu_about">About</a></li> 
-   </ul> 
-  </nav> 
-  <div id="main-container"> 
+    ">A&amp;S</a>
+   </div>
+   <ul>
+    <li><a href="#dashboard" class="nav-link active" data-section="dashboard-section" data-translate-key="menu_dashboard">Dashboard</a></li>
+    <li><a href="#pos" class="nav-link" data-section="pos-section" data-translate-key="menu_pos">Point of Sale</a></li>
+    <li><a href="#items" class="nav-link" data-section="items-section" data-translate-key="menu_items">Items</a></li>
+    <li><a href="#categories" class="nav-link" data-section="categories-section" data-translate-key="menu_categories">Categories</a></li>
+    <li><a href="#stock" class="nav-link needs-password" data-section="stock-section" data-translate-key="menu_stock">Stock</a></li>
+    <li><a href="#purchases" class="nav-link" data-section="purchases-section" data-translate-key="menu_purchases">Purchases</a></li>
+    <li><a href="#daily_report" class="nav-link needs-password" data-section="daily-report-section" data-translate-key="menu_daily_report">Daily Report</a></li>
+    <li><a href="#monthly_report" class="nav-link needs-password" data-section="monthly-report-section" data-translate-key="menu_monthly_report">Monthly Report</a></li>
+    <li><a href="#settings" class="nav-link needs-password" data-section="settings-section" data-translate-key="menu_settings">Settings</a></li>
+    <li><a href="#about" class="nav-link" data-section="about-section" data-translate-key="menu_about">About</a></li>
+   </ul>
+  </nav>
+  <div id="main-container">
    <header id="main-header"> <button id="menu-toggle">☰</button> <span><a style="color: white;font-family: Georgia, 'Times New Roman', Times, serif;font-size: 30px;
-    font-weight: bold;">A&amp;S</a></span> 
-   </header> 
-   <main id="main-content"> 
-    <section id="dashboard-section" class="content-section active"> 
-     <h2 data-translate-key="dashboard_title">Dashboard</h2> 
-     <div style="display: flex; flex-wrap: wrap; gap: 20px;"> 
-      <div style="border: 1px solid var(--border-color); box-shadow: 0 -2px 5px rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; background: var(--light-color); flex: 1; text-align: center; min-width: 150px;"> 
-       <h3 data-translate-key="dashboard_total_transactions_today">Today's Transactions</h3> 
-       <p id="db-total-transactions" style="font-size: 1.5rem; font-weight: bold;">0</p> 
-      </div> 
-      <div style="border: 1px solid var(--border-color); box-shadow: 0 -2px 5px rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; background: var(--light-color); flex: 1; text-align: center; min-width: 150px;"> 
-       <h3 data-translate-key="dashboard_sales_revenue_today">Today's Sales Revenue</h3> 
-       <p id="db-sales-revenue" style="font-size: 1.5rem; font-weight: bold;">0ကျပ်</p> 
-      </div> 
-      <div style="border: 1px solid var(--border-color); box-shadow: 0 -2px 5px rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; background: var(--light-color); flex: 1; text-align: center; min-width: 150px;"> 
-       <h3 data-translate-key="dashboard_net_profit_today">Today's Net Profit</h3> 
-       <p id="db-net-profit" style="font-size: 1.5rem; font-weight: bold;">0ကျပ်</p> 
-      </div> 
-      <div style="border: 1px solid var(--border-color); box-shadow: 0 -2px 5px rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; background: var(--light-color); flex: 1; text-align: center; min-width: 150px;"> 
-       <h3 data-translate-key="dashboard_low_stock_items">Low Stock Items (&lt; 10)</h3> 
-       <p id="db-low-stock-items" style="font-size: 1.5rem; font-weight: bold;">0</p> 
-      </div> 
-     </div> 
-     <div style="margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap;"> <button class="btn-primary" onclick="initTransaction(); navigateToSection('pos-section', document.querySelector('[data-section=pos-section]'))" data-translate-key="dashboard_new_transaction">New Transaction</button> <button class="btn-primary" onclick="openItemModal()" data-translate-key="dashboard_add_item">Add Item</button> <button class="btn-primary" onclick="openCategoryModal()" data-translate-key="dashboard_add_category">Add Category</button> <button class="btn-primary" onclick="openPurchaseModal()" data-translate-key="dashboard_add_purchase">Add Purchase</button> 
-     </div> 
-    </section> 
-    <section id="pos-section" class="content-section"> 
-     <h2 data-translate-key="pos_title">Point of Sale</h2> 
-     <div class="pos-layout-container"> 
-      <div class="product-selection-area"> 
-       <input type="text" id="search-input" data-translate-key="pos_search_placeholder" placeholder="Search items..." style="margin-bottom: 10px;"> 
-       <div class="category-tabs" id="category-tabs"> 
+    font-weight: bold;">A&amp;S</a></span>
+   </header>
+   <main id="main-content">
+    <section id="dashboard-section" class="content-section active">
+     <h2 data-translate-key="dashboard_title">Dashboard</h2>
+     <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+      <div style="border: 1px solid var(--border-color); box-shadow: 0 -2px 5px rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; background: var(--light-color); flex: 1; text-align: center; min-width: 150px;">
+       <h3 data-translate-key="dashboard_total_transactions_today">Today's Transactions</h3>
+       <p id="db-total-transactions" style="font-size: 1.5rem; font-weight: bold;">0</p>
+      </div>
+      <div style="border: 1px solid var(--border-color); box-shadow: 0 -2px 5px rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; background: var(--light-color); flex: 1; text-align: center; min-width: 150px;">
+       <h3 data-translate-key="dashboard_sales_revenue_today">Today's Sales Revenue</h3>
+       <p id="db-sales-revenue" style="font-size: 1.5rem; font-weight: bold;">0ကျပ်</p>
+      </div>
+      <div style="border: 1px solid var(--border-color); box-shadow: 0 -2px 5px rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; background: var(--light-color); flex: 1; text-align: center; min-width: 150px;">
+       <h3 data-translate-key="dashboard_net_profit_today">Today's Net Profit</h3>
+       <p id="db-net-profit" style="font-size: 1.5rem; font-weight: bold;">0ကျပ်</p>
+      </div>
+      <div style="border: 1px solid var(--border-color); box-shadow: 0 -2px 5px rgba(0,0,0,0.1); padding: 20px; border-radius: 5px; background: var(--light-color); flex: 1; text-align: center; min-width: 150px;">
+       <h3 data-translate-key="dashboard_low_stock_items">Low Stock Items (&lt; 10)<p id="db-low-stock-items" style="font-size: 1.5rem; font-weight: bold;">0</p> </h3>
+      </div>
+     </div>
+     <div style="margin-top: 30px; display: flex; gap: 10px; flex-wrap: wrap;"> <button class="btn-primary" onclick="initTransaction(); navigateToSection('pos-section', document.querySelector('[data-section=pos-section]'))" data-translate-key="dashboard_new_transaction">New Transaction</button> <button class="btn-primary" onclick="openItemModal()" data-translate-key="dashboard_add_item">Add Item</button> <button class="btn-primary" onclick="openCategoryModal()" data-translate-key="dashboard_add_category">Add Category</button> <button class="btn-primary" onclick="openPurchaseModal()" data-translate-key="dashboard_add_purchase">Add Purchase</button>
+     </div>
+    </section>
+    <section id="pos-section" class="content-section">
+     <h2 data-translate-key="pos_title">Point of Sale</h2>
+     <div class="pos-layout-container">
+      <div class="product-selection-area">
+       <input type="text" id="search-input" data-translate-key="pos_search_placeholder" placeholder="Search items..." style="margin-bottom: 10px;">
+       <div class="category-tabs" id="category-tabs">
         <div class="category-tab active" data-category-id="all" data-translate-key="pos_all_tab">
-          All 
-        </div> 
-       </div> 
-       <div class="product-grid" id="product-grid"> 
-       </div> 
-      </div> 
-      <div class="order-details-area"> 
-       <h3 data-translate-key="pos_order_details">Order Details</h3> 
-       <div class="table-container"> 
-        <table id="order-table"> 
-         <thead> 
-          <tr> 
-           <th data-translate-key="table_header_name">Name</th> 
-           <th data-translate-key="table_header_quantity">Quantity</th> 
-           <th data-translate-key="table_header_price">Price</th> 
-           <th data-translate-key="table_header_total">Total</th> 
-           <th data-translate-key="table_header_actions">Actions</th> 
-          </tr> 
-         </thead> 
-         <tbody id="order-table-body"> 
-         </tbody> 
-        </table> 
-       </div> 
-       <div class="order-summary"> 
-        <p style="font-size: 1.2rem; font-weight: bold;"><strong data-translate-key="pos_subtotal">Subtotal:</strong> <span id="order-subtotal">0 ကျပ်</span></p> 
-        <div style="margin-top: 20px; display: flex; gap: 10px;"> <button class="btn-primary" id="complete-transaction-btn" disabled data-translate-key="pos_complete">Complete</button> <button class="btn-danger" id="cancel-transaction-btn" disabled data-translate-key="pos_cancel">Cancel</button> 
-        </div> 
-       </div> 
-      </div> 
-     </div> 
-    </section> 
-    <section id="items-section" class="content-section"> 
-     <h2 data-translate-key="items_title">Items Management</h2> 
-     <div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;"> 
-      <input type="text" id="item-search" data-translate-key="search_placeholder" placeholder="Search Items..." style="flex-grow: 1; max-width: 300px; margin-bottom: 0;"> <button class="btn-primary" id="add-item-btn" onclick="openItemModal()" data-translate-key="add_item_btn">Add New Item</button> 
-     </div> 
-     <div class="table-container"> 
-      <table id="items-table"> 
-       <thead> 
-        <tr> 
-         <th data-translate-key="table_header_name">Name</th> 
-         <th data-translate-key="table_header_category">Category</th> 
-         <th data-translate-key="table_header_price">Price</th> 
-         <th data-translate-key="table_header_stock">Stock</th> 
-         <th data-translate-key="table_header_actions">Actions</th> 
-        </tr> 
-       </thead> 
-       <tbody id="items-table-body"> 
-       </tbody> 
-      </table> 
-     </div> 
-    </section> 
-    <section id="categories-section" class="content-section"> 
-     <h2 data-translate-key="categories_title">Categories Management</h2> 
-     <div style="margin-bottom: 15px; display: flex; justify-content: flex-end;"> <button class="btn-primary" id="add-category-btn" onclick="openCategoryModal()" data-translate-key="add_category_btn">Add New Category</button> 
-     </div> 
-     <div class="table-container"> 
-      <table id="categories-table"> 
-       <thead> 
-        <tr> 
-         <th data-translate-key="table_header_category_name">Category Name</th> 
-         <th data-translate-key="table_header_actions">Actions</th> 
-        </tr> 
-       </thead> 
-       <tbody id="categories-table-body"> 
-       </tbody> 
-      </table> 
-     </div> 
-     <div id="category-items-display" style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;"> 
-      <h3 id="category-items-title">Items in Category: <span></span></h3> 
-      <div class="table-container"> 
-       <table id="category-items-table"> 
-        <thead> 
-         <tr> 
-          <th data-translate-key="table_header_name">Name</th> 
-          <th data-translate-key="table_header_price">Price</th> 
-          <th data-translate-key="table_header_stock">Stock</th> 
-         </tr> 
-        </thead> 
-        <tbody id="category-items-table-body"></tbody> 
-       </table> 
-      </div> 
-     </div> 
-    </section> 
-    <section id="stock-section" class="content-section needs-password"> 
-     <h2 data-translate-key="stock_title">Stock Management</h2> 
-     <p data-translate-key="stock_description">Add stock quantity for existing items.</p> 
-     <div class="category-tabs" id="stock-category-tabs"> 
+          All
+        </div>
+       </div>
+       <div class="product-grid" id="product-grid">
+       </div>
+      </div>
+      <div class="order-details-area">
+       <h3 data-translate-key="pos_order_details">Order Details</h3>
+       <div class="table-container">
+        <table id="order-table">
+         <thead>
+          <tr>
+           <th data-translate-key="table_header_name">Name</th>
+           <th data-translate-key="table_header_quantity">Quantity</th>
+           <th data-translate-key="table_header_price">Price</th>
+           <th data-translate-key="table_header_total">Total</th>
+           <th data-translate-key="table_header_actions">Actions</th>
+          </tr>
+         </thead>
+         <tbody id="order-table-body">
+         </tbody>
+        </table>
+       </div>
+       <div class="order-summary">
+        <p style="font-size: 1.2rem; font-weight: bold;"><strong data-translate-key="pos_subtotal">Subtotal:</strong> <span id="order-subtotal">0 ကျပ်</span></p>
+        <div style="margin-top: 20px; display: flex; gap: 10px;"> <button class="btn-primary" id="complete-transaction-btn" disabled data-translate-key="pos_complete">Complete</button> <button class="btn-danger" id="cancel-transaction-btn" disabled data-translate-key="pos_cancel">Cancel</button>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    <section id="items-section" class="content-section">
+     <h2 data-translate-key="items_title">Items Management</h2>
+     <div style="margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <input type="text" id="item-search" data-translate-key="search_placeholder" placeholder="Search Items..." style="flex-grow: 1; max-width: 300px; margin-bottom: 0;"> <button class="btn-primary" id="add-item-btn" onclick="openItemModal()" data-translate-key="add_item_btn">Add New Item</button>
+     </div>
+     <div class="table-container">
+      <table id="items-table">
+       <thead>
+        <tr>
+         <th data-translate-key="table_header_name">Name</th>
+         <th data-translate-key="table_header_category">Category</th>
+         <th data-translate-key="table_header_price">Price</th>
+         <th data-translate-key="table_header_stock">Stock</th>
+         <th data-translate-key="table_header_actions">Actions</th>
+        </tr>
+       </thead>
+       <tbody id="items-table-body">
+       </tbody>
+      </table>
+     </div>
+    </section>
+    <section id="categories-section" class="content-section">
+     <h2 data-translate-key="categories_title">Categories Management</h2>
+     <div style="margin-bottom: 15px; display: flex; justify-content: flex-end;"> <button class="btn-primary" id="add-category-btn" onclick="openCategoryModal()" data-translate-key="add_category_btn">Add New Category</button>
+     </div>
+     <div class="table-container">
+      <table id="categories-table">
+       <thead>
+        <tr>
+         <th data-translate-key="table_header_category_name">Category Name</th>
+         <th data-translate-key="table_header_actions">Actions</th>
+        </tr>
+       </thead>
+       <tbody id="categories-table-body">
+       </tbody>
+      </table>
+     </div>
+     <div id="category-items-display" style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+      <h3 id="category-items-title">Items in Category: <span></span></h3>
+      <div class="table-container">
+       <table id="category-items-table">
+        <thead>
+         <tr>
+          <th data-translate-key="table_header_name">Name</th>
+          <th data-translate-key="table_header_price">Price</th>
+          <th data-translate-key="table_header_stock">Stock</th>
+         </tr>
+        </thead>
+        <tbody id="category-items-table-body"></tbody>
+       </table>
+      </div>
+     </div>
+    </section>
+    <section id="stock-section" class="content-section needs-password">
+     <h2 data-translate-key="stock_title">Stock Management</h2>
+     <p data-translate-key="stock_description">Add stock quantity for existing items.</p>
+     <div class="category-tabs" id="stock-category-tabs">
       <div class="category-tab active" data-category-id="all" data-translate-key="pos_all_tab">
-        All 
-      </div> 
-     </div> 
-     <div class="table-container"> 
-      <table id="stock-table"> 
-       <thead> 
-        <tr> 
-         <th data-translate-key="table_header_name">Name</th> 
-         <th data-translate-key="table_header_current_stock">Current Stock</th> 
-         <th data-translate-key="table_header_add_stock">Add Stock Qty</th> 
-         <th data-translate-key="table_header_actions">Actions</th> 
-        </tr> 
-       </thead> 
-       <tbody id="stock-table-body"> 
-       </tbody> 
-      </table> 
-     </div> 
-    </section> 
-    <section id="purchases-section" class="content-section"> 
-     <h2 data-translate-key="purchases_title">Purchases</h2> 
-     <div style="margin-bottom: 15px; display: flex; justify-content: flex-end;"> <button class="btn-primary" id="add-purchase-btn" onclick="openPurchaseModal()" data-translate-key="purchases_add_btn">Add New Purchase</button> 
-     </div> 
-     <div class="table-container"> 
-      <table id="purchases-table"> 
-       <thead> 
-        <tr> 
-         <th data-translate-key="purchases_table_item_name">Item Name</th> 
-         <th data-translate-key="purchases_table_quantity">Quantity</th> 
-         <th data-translate-key="purchases_table_total_cost">Total Cost</th> 
-         <th data-translate-key="table_header_date">Date</th> 
-         <th data-translate-key="table_header_actions">Actions</th> 
-        </tr> 
-       </thead> 
-       <tbody id="purchases-table-body"> 
-       </tbody> 
-      </table> 
-     </div> 
-    </section> 
-    <section id="daily-report-section" class="content-section needs-password"> 
-     <h2 data-translate-key="daily_report_title">Daily Sales Report</h2> 
-     <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"> <label for="daily-report-date" data-translate-key="report_date_label">Select Date:</label> 
-      <input type="date" id="daily-report-date" style="max-width: 200px;"> <button class="btn-primary" id="generate-daily-report-btn" data-translate-key="report_generate_btn">Generate Report</button> 
-     </div> 
-    </section> 
-    <section id="monthly-report-section" class="content-section needs-password"> 
-     <h2 data-translate-key="monthly_report_title">Monthly Sales Report</h2> 
-     <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"> <label for="monthly-report-date" data-translate-key="report_month_label">Select Month:</label> 
-      <input type="month" id="monthly-report-date" style="max-width: 200px;"> <button class="btn-primary" id="generate-monthly-report-btn" data-translate-key="report_generate_btn">Generate Report</button> 
-     </div> 
-    </section> 
-    <section id="settings-section" class="content-section"> 
-     <h2 data-translate-key="settings_title">Settings</h2> 
-     <div style="display: flex; align-items: center; gap: 10px;"> <label for="language-select" data-translate-key="settings_language_label">Language:</label> <select id="language-select" style="width: auto; min-width: 150px;"> <option value="en">English</option> <option value="my">မြန်မာ</option> <option value="ja">日本語</option> </select> 
-     </div> 
-     <div style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;"> 
-      <h3 data-translate-key="settings_danger_zone">Danger Zone</h3> <button class="btn-danger" id="clear-all-data-btn" data-translate-key="settings_clear_data">Clear All Data</button> 
-      <p style="color: var(--danger-color); font-size: 0.9em; margin-top: 5px;" data-translate-key="settings_clear_data_warning">Warning: This will permanently delete all items, categories, sales, and purchases.</p> 
-     </div> 
-    </section> 
-    <section id="about-section" class="content-section"> 
-     <h2 data-translate-key="about_title">About</h2> 
-     <p data-translate-key="about_content">POS system developed based on requirements.</p> 
-     <p>©️ Aung Kaung Myat production</p> 
-     <p>Version: 1.0.1</p> 
-    </section> 
-   </main> 
+        All
+      </div>
+     </div>
+     <div class="table-container">
+      <table id="stock-table">
+       <thead>
+        <tr>
+         <th data-translate-key="table_header_name">Name</th>
+         <th data-translate-key="table_header_current_stock">Current Stock</th>
+         <th data-translate-key="table_header_add_stock">Add Stock Qty</th>
+         <th data-translate-key="table_header_actions">Actions</th>
+        </tr>
+       </thead>
+       <tbody id="stock-table-body">
+        <tr><td colspan="4" style="text-align: center;">Loading...</td></tr>
+       </tbody>
+      </table>
+     </div>
+    </section>
+    <section id="purchases-section" class="content-section">
+     <h2 data-translate-key="purchases_title">Purchases</h2>
+     <div style="margin-bottom: 15px; display: flex; justify-content: flex-end;"> <button class="btn-primary" id="add-purchase-btn" onclick="openPurchaseModal()" data-translate-key="purchases_add_btn">Add New Purchase</button>
+     </div>
+     <div class="table-container">
+      <table id="purchases-table">
+       <thead>
+        <tr>
+         <th data-translate-key="purchases_table_item_name">Item Name</th>
+         <th data-translate-key="purchases_table_quantity">Quantity</th>
+         <th data-translate-key="purchases_table_total_cost">Total Cost</th>
+         <th data-translate-key="table_header_date">Date</th>
+         <th data-translate-key="table_header_actions">Actions</th>
+        </tr>
+       </thead>
+       <tbody id="purchases-table-body">
+       </tbody>
+      </table>
+     </div>
+    </section>
+    <section id="daily-report-section" class="content-section needs-password">
+     <h2 data-translate-key="daily_report_title">Daily Sales Report</h2>
+     <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"> <label for="daily-report-date" data-translate-key="report_date_label">Select Date:</label>
+      <input type="date" id="daily-report-date" style="max-width: 200px;"> <button class="btn-primary" id="generate-daily-report-btn" data-translate-key="report_generate_btn">Generate Report</button>
+     </div>
+    </section>
+    <section id="monthly-report-section" class="content-section needs-password">
+     <h2 data-translate-key="monthly_report_title">Monthly Sales Report</h2>
+     <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;"> <label for="monthly-report-date" data-translate-key="report_month_label">Select Month:</label>
+      <input type="month" id="monthly-report-date" style="max-width: 200px;"> <button class="btn-primary" id="generate-monthly-report-btn" data-translate-key="report_generate_btn">Generate Report</button>
+     </div>
+    </section>
+    <section id="settings-section" class="content-section needs-password">
+     <h2 data-translate-key="settings_title">Settings</h2>
+     <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px;"> <label for="language-select" data-translate-key="settings_language_label">Language:</label> <select id="language-select" style="width: auto; min-width: 150px;"> <option value="en">English</option> <option value="my">မြန်မာ</option> <option value="ja">日本語</option> </select>
+     </div>
+     <div style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+      <h3 data-translate-key="settings_password_zone">Password Settings</h3>
+      <p id="password-status" style="margin-bottom: 15px;">Loading password status...</p>
+      <form id="password-settings-form">
+       <div> <label for="new-password" data-translate-key="settings_new_password_label">New Password:</label>
+        <input type="password" id="new-password" autocomplete="new-password">
+       </div>
+       <div> <label for="confirm-password" data-translate-key="settings_confirm_password_label">Confirm Password:</label>
+        <input type="password" id="confirm-password" autocomplete="new-password">
+       </div>
+       <div style="margin-top: 15px;"> <button type="submit" class="btn-primary" data-translate-key="settings_save_password_btn">Save Password</button>
+       </div>
+      </form>
+      
+     </div>
+     <div style="margin-top: 30px; border-top: 1px solid var(--border-color); padding-top: 20px;">
+      <h3 data-translate-key="settings_danger_zone">Danger Zone</h3> <button class="btn-danger" id="clear-all-data-btn" data-translate-key="settings_clear_data">Clear All Data</button>
+      <p style="color: var(--danger-color); font-size: 0.9em; margin-top: 5px;" data-translate-key="settings_clear_data_warning">Warning: This will permanently delete all items, categories, sales, and purchases.</p>
+     </div>
+    </section>
+    <section id="about-section" class="content-section">
+     <h2 data-translate-key="about_title">About</h2>
+     <p data-translate-key="about_content">POS system developed based on requirements.</p>
+     <p>©️ Aung Kaung Myat production</p>
+     <p>Version: 1.0.1</p>
+    </section>
+   </main>
    <footer>
-     ©️ Aung Kaung Myat production 
-   </footer> 
-  </div> 
-  <div id="item-modal" class="modal"> <button class="close-btn" onclick="closeModal('item-modal')">×</button> 
-   <h3 id="item-modal-title" data-translate-key="form_add_item">Add Item</h3> 
-   <form id="item-form"> 
-    <input type="hidden" id="item-id"> 
-    <div> <label for="item-name" data-translate-key="form_item_name">Name</label> 
-     <input type="text" id="item-name" required> 
-    </div> 
-    <div> <label for="item-category" data-translate-key="form_item_category">Category</label> <select id="item-category" required></select> 
-    </div> 
-    <div> <label for="item-price" data-translate-key="form_item_price">Price</label> 
-     <input type="number" id="item-price" required min="0" step="any"> 
-    </div> 
-    <div id="item-stock-field"> <label for="item-stock" data-translate-key="form_item_initial_stock">Initial Stock</label> 
-     <input type="number" id="item-stock" required min="0" step="1" value="0"> 
-    </div> 
-    <div> <button type="submit" class="btn-primary" id="save-item-btn" data-translate-key="form_save">Save</button> 
-    </div> 
-   </form> 
-  </div> 
-  <div id="category-modal" class="modal"> <button class="close-btn" onclick="closeModal('category-modal')">×</button> 
-   <h3 id="category-modal-title" data-translate-key="form_add_category">Add Category</h3> 
-   <form id="category-form"> 
-    <input type="hidden" id="category-id"> 
-    <div> <label for="category-name" data-translate-key="form_category_name">Name</label> 
-     <input type="text" id="category-name" required> 
-    </div> 
-    <div> <button type="submit" class="btn-primary" id="save-category-btn" data-translate-key="form_save">Save</button> 
-    </div> 
-   </form> 
-  </div> 
-  <div id="purchase-modal" class="modal"> <button class="close-btn" onclick="closeModal('purchase-modal')">×</button> 
-   <h3 id="purchase-modal-title" data-translate-key="form_add_purchase">Add Purchase</h3> 
-   <form id="purchase-form"> 
-    <input type="hidden" id="purchase-id"> 
-    <div> <label for="purchase-item-name" data-translate-key="purchases_form_item_name">Item Name</label> 
-     <input type="text" id="purchase-item-name" required> 
-    </div> 
-    <div> <label for="purchase-quantity" data-translate-key="purchases_form_quantity">Quantity</label> 
-     <input type="number" id="purchase-quantity" required min="1" step="1"> 
-    </div> 
-    <div> <label for="purchase-total-cost" data-translate-key="purchases_form_total_cost">Total Cost</label> 
-     <input type="number" id="purchase-total-cost" required min="0" step="any"> 
-    </div> 
-    <div> <label for="purchase-date" data-translate-key="form_purchase_date">Purchase Date</label> 
-     <input type="date" id="purchase-date" required> 
-    </div> 
-    <div> <button type="submit" class="btn-primary" id="save-purchase-btn" data-translate-key="form_save">Save</button> 
-    </div> 
-   </form> 
-  </div> 
-  <div id="confirm-delete-modal" class="modal"> <button class="close-btn" onclick="closeModal('confirm-delete-modal')">×</button> 
-   <h3 data-translate-key="confirm_delete_title">Confirm Deletion</h3> 
-   <p id="confirm-delete-message"></p> 
-   <div class="confirmation-actions"> <button id="confirm-delete-yes" class="btn-danger" data-translate-key="form_yes">Yes</button> <button id="confirm-delete-no" class="btn-secondary" onclick="closeModal('confirm-delete-modal')" data-translate-key="form_no">No</button> 
-   </div> 
-  </div> 
-  <div id="confirm-clear-all-modal" class="modal"> <button class="close-btn" onclick="closeModal('confirm-clear-all-modal')">×</button> 
-   <h3 data-translate-key="confirm_clear_all_title">Confirm Clear All Data</h3> 
-   <p data-translate-key="confirm_clear_all_message">Are you absolutely sure you want to delete ALL data (items, categories, sales, purchases)? This action cannot be undone.</p> 
-   <div class="confirmation-actions"> <button id="confirm-clear-all-yes" class="btn-danger" data-translate-key="form_yes_clear">Yes, Clear All Data</button> <button id="confirm-clear-all-no" class="btn-secondary" onclick="closeModal('confirm-clear-all-modal')" data-translate-key="form_no">No</button> 
-   </div> 
-  </div> 
-  <div id="confirm-sale-modal" class="modal"> <button class="close-btn" onclick="closeModal('confirm-sale-modal')">×</button> 
-   <h3 data-translate-key="confirm_sale_title">Confirm Sale</h3> 
-   <p data-translate-key="confirm_sale_message">Are you sure you want to complete this sale?</p> 
-   <div class="confirmation-actions"> <button id="confirm-sale-yes" class="btn-primary" data-translate-key="form_yes">Yes</button> <button id="confirm-sale-no" class="btn-secondary" onclick="closeModal('confirm-sale-modal')" data-translate-key="form_no">No</button> 
-   </div> 
-  </div> 
-  <div id="password-prompt" class="modal"> <button class="close-btn" onclick="closeModal('password-prompt'); resetPasswordProtection();">×</button> 
-   <h3 data-translate-key="password_prompt_title">Password Required</h3> 
-   <div class="modal-body"> 
-    <p data-translate-key="password_prompt_message">Please enter the password to access this section.</p> 
-    <input type="password" id="password-input" placeholder="Password"> 
-    <p id="password-error" style="color: var(--danger-color); display: none; margin-top: 10px;" data-translate-key="password_prompt_error">Incorrect password.</p> 
-   </div> 
-   <div class="confirmation-actions"> <button id="submit-password" class="btn-primary" data-translate-key="form_submit">Submit</button> 
-   </div> 
-  </div> 
-  <div id="report-modal" class="modal"> <button class="close-btn" onclick="closeModal('report-modal')">×</button> 
-   <h3 id="report-modal-title" data-translate-key="report_modal_title">Report</h3> 
-   <div id="report-content" style="max-height: 60vh; overflow-y: auto;"> 
-    <h4 data-translate-key="report_sales_section">Sales</h4> 
-    <div class="table-container"> 
-     <table id="report-sales-table"> 
-      <thead> 
-       <tr> 
-        <th data-translate-key="report_table_date">Date</th> 
-        <th data-translate-key="report_table_items">Items</th> 
-        <th data-translate-key="report_table_total">Total</th> 
-       </tr> 
-      </thead> 
-      <tbody id="report-sales-table-body"></tbody> 
-     </table> 
-    </div> 
-    <h4 data-translate-key="report_purchases_section">Purchases</h4> 
-    <div class="table-container"> 
-     <table id="report-purchases-table"> 
-      <thead> 
-       <tr> 
-        <th data-translate-key="table_header_date">Date</th> 
-        <th data-translate-key="purchases_table_item_name">Item Name</th> 
-        <th data-translate-key="purchases_table_quantity">Quantity</th> 
-        <th data-translate-key="purchases_table_total_cost">Total Cost</th> 
-       </tr> 
-      </thead> 
-      <tbody id="report-purchases-table-body"></tbody> 
-     </table> 
-    </div> 
-    <h4 data-translate-key="report_inventory_section">Inventory Status (Current)</h4> 
-    <div class="table-container"> 
-     <table id="report-inventory-table"> 
-      <thead> 
-       <tr> 
-        <th data-translate-key="table_header_name">Item Name</th> 
-        <th data-translate-key="table_header_category">Category</th> 
-        <th data-translate-key="table_header_stock">Stock</th> 
-       </tr> 
-      </thead> 
-      <tbody id="report-inventory-table-body"></tbody> 
-     </table> 
-    </div> 
-    <h4 data-translate-key="report_summary_section">Summary (For Selected Period)</h4> 
-    <p><strong data-translate-key="report_total_sales">Total Sales Revenue:</strong> <span id="report-total-sales">0 ကျပ်</span></p> 
-    <p><strong data-translate-key="report_total_purchases">Total Purchases:</strong> <span id="report-total-purchases">0 ကျပ်</span></p> 
-    <p><strong data-translate-key="dashboard_net_profit">Net Profit:</strong> <span id="report-net-profit">0 ကျပ်</span></p> 
-   </div> 
-   <div class="confirmation-actions" style="margin-top: 20px;"> <button class="btn-primary" onclick="exportReportToPDF()" data-translate-key="report_export_pdf">Export to PDF</button> <button class="btn-primary" onclick="exportReportToCSV()" data-translate-key="report_export_csv">Export to CSV</button> 
-   </div> 
-  </div> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script> 
-  <script src="app.js"></script>
+     ©️ Aung Kaung Myat production
+   </footer>
+  </div>
+  <div id="item-modal" class="modal"> <button class="close-btn" onclick="closeModal('item-modal')">×</button>
+   <h3 id="item-modal-title" data-translate-key="form_add_item">Add Item</h3>
+   <form id="item-form">
+    <input type="hidden" id="item-id">
+    <div> <label for="item-name" data-translate-key="form_item_name">Name</label>
+     <input type="text" id="item-name" required>
+    </div>
+    <div> <label for="item-category" data-translate-key="form_item_category">Category</label> <select id="item-category" required></select>
+    </div>
+    <div> <label for="item-price" data-translate-key="form_item_price">Price</label>
+     <input type="number" id="item-price" required min="0" step="any">
+    </div>
+    <div id="item-stock-field"> <label for="item-stock" data-translate-key="form_item_initial_stock">Initial Stock</label>
+     <input type="number" id="item-stock" required min="0" step="1" value="0">
+    </div>
+    <div> <button type="submit" class="btn-primary" id="save-item-btn" data-translate-key="form_save">Save</button>
+    </div>
+   </form>
+  </div>
+  <div id="category-modal" class="modal"> <button class="close-btn" onclick="closeModal('category-modal')">×</button>
+   <h3 id="category-modal-title" data-translate-key="form_add_category">Add Category</h3>
+   <form id="category-form">
+    <input type="hidden" id="category-id">
+    <div> <label for="category-name" data-translate-key="form_category_name">Name</label>
+     <input type="text" id="category-name" required>
+    </div>
+    <div> <button type="submit" class="btn-primary" id="save-category-btn" data-translate-key="form_save">Save</button>
+    </div>
+   </form>
+  </div>
+  <div id="purchase-modal" class="modal"> <button class="close-btn" onclick="closeModal('purchase-modal')">×</button>
+   <h3 id="purchase-modal-title" data-translate-key="form_add_purchase">Add Purchase</h3>
+   <form id="purchase-form">
+    <input type="hidden" id="purchase-id">
+    <div> <label for="purchase-item-name" data-translate-key="purchases_form_item_name">Item Name</label>
+     <input type="text" id="purchase-item-name" required>
+    </div>
+    <div> <label for="purchase-quantity" data-translate-key="purchases_form_quantity">Quantity</label>
+     <input type="number" id="purchase-quantity" required min="1" step="1">
+    </div>
+    <div> <label for="purchase-total-cost" data-translate-key="purchases_form_total_cost">Total Cost</label>
+     <input type="number" id="purchase-total-cost" required min="0" step="any">
+    </div>
+    <div> <label for="purchase-date" data-translate-key="form_purchase_date">Purchase Date</label>
+     <input type="date" id="purchase-date" required>
+    </div>
+    <div> <button type="submit" class="btn-primary" id="save-purchase-btn" data-translate-key="form_save">Save</button>
+    </div>
+   </form>
+  </div>
+  <div id="confirm-delete-modal" class="modal"> <button class="close-btn" onclick="closeModal('confirm-delete-modal')">×</button>
+   <h3 data-translate-key="confirm_delete_title">Confirm Deletion</h3>
+   <p id="confirm-delete-message"></p>
+   <div class="confirmation-actions"> <button id="confirm-delete-yes" class="btn-danger" data-translate-key="form_yes">Yes</button> <button id="confirm-delete-no" class="btn-secondary" onclick="closeModal('confirm-delete-modal')" data-translate-key="form_no">No</button>
+   </div>
+  </div>
+  <div id="confirm-clear-all-modal" class="modal"> <button class="close-btn" onclick="closeModal('confirm-clear-all-modal')">×</button>
+   <h3 data-translate-key="confirm_clear_all_title">Confirm Clear All Data</h3>
+   <p data-translate-key="confirm_clear_all_message">Are you absolutely sure you want to delete ALL data (items, categories, sales, purchases)? This action cannot be undone.</p>
+   <div class="confirmation-actions"> <button id="confirm-clear-all-yes" class="btn-danger" data-translate-key="form_yes_clear">Yes, Clear All Data</button> <button id="confirm-clear-all-no" class="btn-secondary" onclick="closeModal('confirm-clear-all-modal')" data-translate-key="form_no">No</button>
+   </div>
+  </div>
+  <div id="confirm-sale-modal" class="modal"> <button class="close-btn" onclick="closeModal('confirm-sale-modal')">×</button>
+   <h3 data-translate-key="confirm_sale_title">Confirm Sale</h3>
+   <p data-translate-key="confirm_sale_message">Are you sure you want to complete this sale?</p>
+   <div class="confirmation-actions"> <button id="confirm-sale-yes" class="btn-primary" data-translate-key="form_yes">Yes</button> <button id="confirm-sale-no" class="btn-secondary" onclick="closeModal('confirm-sale-modal')" data-translate-key="form_no">No</button>
+   </div>
+  </div>
+  <div id="password-prompt" class="modal"> <button class="close-btn" onclick="closeModal('password-prompt'); resetPasswordProtection();">×</button>
+   <h3 data-translate-key="password_prompt_title">Password Required</h3>
+   <div class="modal-body">
+    <p data-translate-key="password_prompt_message">Please enter the password to access this section.</p>
+    <input type="password" id="password-input" placeholder="Password">
+    <p id="password-error" style="color: var(--danger-color); display: none; margin-top: 10px;" data-translate-key="password_prompt_error">Incorrect password.</p>
+   </div>
+   <div class="confirmation-actions"> <button id="submit-password" class="btn-primary" data-translate-key="form_submit">Submit</button>
+   </div>
+  </div>
+  <div id="report-modal" class="modal"> <button class="close-btn" onclick="closeModal('report-modal')">×</button>
+   <h3 id="report-modal-title" data-translate-key="report_modal_title">Report</h3>
+   <div id="report-content" style="max-height: 60vh; overflow-y: auto;">
+    <h4 data-translate-key="report_sales_section">Sales</h4>
+    <div class="table-container">
+     <table id="report-sales-table">
+      <thead>
+       <tr>
+        <th data-translate-key="report_table_date">Date</th>
+        <th data-translate-key="report_table_items">Items</th>
+        <th data-translate-key="report_table_total">Total</th>
+       </tr>
+      </thead>
+      <tbody id="report-sales-table-body"></tbody>
+     </table>
+    </div>
+    <h4 data-translate-key="report_purchases_section">Purchases</h4>
+    <div class="table-container">
+     <table id="report-purchases-table">
+      <thead>
+       <tr>
+        <th data-translate-key="table_header_date">Date</th>
+        <th data-translate-key="purchases_table_item_name">Item Name</th>
+        <th data-translate-key="purchases_table_quantity">Quantity</th>
+        <th data-translate-key="purchases_table_total_cost">Total Cost</th>
+       </tr>
+      </thead>
+      <tbody id="report-purchases-table-body"></tbody>
+     </table>
+    </div>
+    <h4 data-translate-key="report_inventory_section">Inventory Status (Current)</h4>
+    <div class="table-container">
+     <table id="report-inventory-table">
+      <thead>
+       <tr>
+        <th data-translate-key="table_header_name">Item Name</th>
+        <th data-translate-key="table_header_category">Category</th>
+        <th data-translate-key="table_header_stock">Stock</th>
+       </tr>
+      </thead>
+      <tbody id="report-inventory-table-body"></tbody>
+     </table>
+    </div>
+    <h4 data-translate-key="report_summary_section">Summary (For Selected Period)</h4>
+    <p><strong data-translate-key="report_total_sales">Total Sales Revenue:</strong> <span id="report-total-sales">0 ကျပ်</span></p>
+    <p><strong data-translate-key="report_total_purchases">Total Purchases:</strong> <span id="report-total-purchases">0 ကျပ်</span></p>
+    <p><strong data-translate-key="dashboard_net_profit">Net Profit:</strong> <span id="report-net-profit">0 ကျပ်</span></p>
+   </div>
+   <div class="confirmation-actions" style="margin-top: 20px;"> <button class="btn-primary" onclick="exportReportToPDF()" data-translate-key="report_export_pdf">Export to PDF</button> <button class="btn-primary" onclick="exportReportToCSV()" data-translate-key="report_export_csv">Export to CSV</button>
+   </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
   <script>
-             
   // Register Service Worker
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('sw.js')
+      navigator.serviceWorker.register('/aandsv1/sw.js')
         .then(registration => {
           console.log('ServiceWorker registration successful');
         })
@@ -370,8 +386,7 @@
         });
     });
   }
+</script>
+ <script src="app.js"></script>
  
-
-    </script>
-
 </body></html>

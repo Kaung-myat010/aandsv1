@@ -1,74 +1,39 @@
-const CACHE_NAME = 'aandsv1';
+const CACHE_NAME = 'aands-pos-v1';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/app.js',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/aandsv1/',
+  '/aandsv1/index.html',
+  '/aandsv1/manifest.json',
+  '/aandsv1/style.css',
+  '/aandsv1/app.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js'
 ];
 
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(caches => {
-        return caches.addAll(ASSETS_TO_CACHE);
-      })
-  );
-});
-
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cache => {
-          if (cache !== CACHE_NAME) {
-            return caches.delete(cache);
-          }
-        })
-      );
-    })
+      .then(cache => cache.addAll(ASSETS_TO_CACHE))
   );
 });
 
 self.addEventListener('fetch', event => {
-  // Skip caching for API requests or non-GET requests
-  if (event.request.method !== 'GET') {
-    return;
-  }
-
   event.respondWith(
     caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
+      .then(response => response || fetch(event.request))
+  );
+});
 
-        // Clone the request
-        const fetchRequest = event.request.clone();
-
-        return fetch(fetchRequest).then(
-          response => {
-            // Check if we received a valid response
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
+self.addEventListener('activate', event => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
           }
-        ).catch(() => {
-          // If fetch fails, return offline page or fallback
-          return caches.match('/offline.html');
-        });
-      })
+        })
+      );
+    })
   );
 });

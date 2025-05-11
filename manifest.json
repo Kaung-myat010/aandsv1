@@ -1,21 +1,20 @@
 {
-  "name": "A&S budget POS",
+  "name": "A&S Budget POS System",
   "short_name": "A&S",
-  "description": "A simple point of sale system for SMEs bussinesses.",
+  "description": "Budget POS System for SMEs",
   "start_url": "/aandsv1/",
   "display": "standalone",
   
   "icons": [
     {
-      "src": "/aandsv1/icons/icon-192x192.png",
+      "src": "icons/icon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/aandsv1/icons/icon-512x512.png",
+      "src": "icons/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
-  ],
-  "scope": "/aandsv1/"
+  ]
 }
