@@ -3,7 +3,7 @@ const BASE_PATH = '/aandsv1'; // GitHub repo name
 
 const ASSETS_TO_CACHE = [
   ${BASE_PATH}/index.html,
-  ${BASE_PATH}/styles.css,
+  ${BASE_PATH}/style.css,
   ${BASE_PATH}/app.js,
   ${BASE_PATH}/icons/icon-192x192.png,
   ${BASE_PATH}/icons/icon-512x512.png
